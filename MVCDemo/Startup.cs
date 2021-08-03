@@ -29,8 +29,9 @@ namespace MVCDemo
         {
             services.AddDbContextPool<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
             services.AddScoped<IEmployee, EmployeeData>();
-            //services.AddControllers();
-            services.AddControllersWithViews();
+            services.AddScoped<IProfile, ProfileData>();
+            services.AddControllers();
+            //services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,14 +55,14 @@ namespace MVCDemo
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=employees}/{action=Index}/{id?}");
-            }
             //{
-            //    endpoints.MapControllers();
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=employees}/{action=Index}/{id?}");
             //}
+            {
+                endpoints.MapControllers();
+            }
             );
         }
     }

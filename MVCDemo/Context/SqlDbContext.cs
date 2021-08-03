@@ -15,5 +15,6 @@ namespace MVCDemo.Context
         }
 
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Profile> Profile { get; set; }
     }
 }
